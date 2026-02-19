@@ -16,7 +16,7 @@ jobs:
           SHEETS_WEBHOOK: ${{ secrets.SHEETS_WEBHOOK }}
           REPO: ${{ github.repository }}
         run: |
-          python3 <<EOF
+          python3 <<'EOF'
 import os
 import csv
 import io

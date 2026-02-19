@@ -16,7 +16,7 @@ jobs:
           SHEETS_WEBHOOK: ${{ secrets.SHEETS_WEBHOOK }}
           ACTOR: ${{ github.actor }}
         run: |
-          python3 <<EOF
+          python3 <<'EOF'
 import os
 import csv
 import io
