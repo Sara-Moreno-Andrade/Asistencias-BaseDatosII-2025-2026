@@ -81,9 +81,15 @@ for pr in prs:
     created_at = pr["created_at"]  # UTC
     user = pr["user"]["login"].lower()
 
-    dt = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%SZ")
-    fecha_pr = dt.strftime("%Y-%m-%d")
-    hora_pr = dt.strftime("%H:%M")
+    from zoneinfo import ZoneInfo
+
+    dt_utc = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%SZ")
+    dt_utc = dt_utc.replace(tzinfo=ZoneInfo("UTC"))
+
+    dt_spain = dt_utc.astimezone(ZoneInfo("Europe/Madrid"))
+
+    fecha_pr = dt_spain.strftime("%Y-%m-%d")
+    hora_pr = dt_spain.strftime("%H:%M")
 
     if fecha_pr != fecha:
         continue
